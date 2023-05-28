@@ -7,10 +7,10 @@ public class MyClientA2 {
 		try{      
 			// Creating a socket connection to the server using localhost and port number 50000
 			Socket mySocket = new Socket("localhost",50000);  
-			// Creating a BufferedReader object to read data sent by the server
+			// Creating an input stream reader to read data from the server
 			BufferedReader dout = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
-			// Creating a DataOutputStream object to send data to the server
-			DataOutputStream dis=new DataOutputStream(mySocket.getOutputStream()); 
+			// Creating an output stream to send data to the server
+			DataOutputStream dis = new DataOutputStream(mySocket.getOutputStream()); 
 			
 			// Initiate the handshake with the server
 			initiateHandshake(dis, dout);
