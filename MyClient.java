@@ -3,7 +3,9 @@ import java.net.*;
 public class MyClient {  
 public static void main(String[] args) {  
 try{      
-	// -- Socket Creation -- //
+	// Socket Creation and Initialisation of Variables //
+	String str = "";
+    String Server = "";
 	Socket mySocket=new Socket("localhost",50000);  
 	BufferedReader dis = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
 	DataOutputStream dout=new DataOutputStream(mySocket.getOutputStream()); 
@@ -19,17 +21,13 @@ try{
 
 
 	// -- Handshake -- //
-	dout.write(("HELO\n").getBytes());
-	dout.flush(); 
-	 
-	String str=(String)dis.readLine();
-	System.out.println(str);
-	  
+	dout.write(("HELO\n").getBytes()); // Handshake
+    dout.flush();
+    str = (String) dis.readLine();
 	dout.write(("AUTH Adam\n").getBytes());
 	dout.flush();
+    str = (String) dis.readLine();
 	
-	str=dis.readLine(); 
-	System.out.println(str);
 	
 	// -- Job Scheduler While Loop -- //
 	while(!str.contains("NONE")){  // WHILE LOOP START
